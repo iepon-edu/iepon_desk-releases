@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "standard": "iepon-edu/collaboration",
+  "version": "2026-10-05.1",
+  "repository": "iepon-edu/iepon_desk-releases",
+  "entrypoint": "AGENTS.md",
+  "source": "https://github.com/iepon-edu/.github/blob/main/AGENTS.md"
+}

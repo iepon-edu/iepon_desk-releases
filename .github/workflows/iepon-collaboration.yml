@@ -1,0 +1,45 @@
+# iepon-collaboration-standard: 2026-10-05.1
+name: 협업 어댑터 검증
+
+on:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README.md"
+      - ".cursor/rules/iepon-org.mdc"
+      - ".github/copilot-instructions.md"
+      - ".github/iepon-collaboration.json"
+      - ".github/workflows/iepon-collaboration.yml"
+      - "scripts/verify-iepon-collaboration.mjs"
+  push:
+    branches:
+      - "main"
+    paths:
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - "README.md"
+      - ".cursor/rules/iepon-org.mdc"
+      - ".github/copilot-instructions.md"
+      - ".github/iepon-collaboration.json"
+      - ".github/workflows/iepon-collaboration.yml"
+      - "scripts/verify-iepon-collaboration.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: 저장소 받기
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Node.js 24 사용
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "24"
+      - name: 협업 문서와 어댑터 검사
+        run: node scripts/verify-iepon-collaboration.mjs
